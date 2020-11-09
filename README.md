@@ -16,3 +16,10 @@ bundle install
 rake
 ```
 
+## Mettre à jour le projet
+* La version de [`revealjs`](https://revealjs.com/) pour les slides est à configurer dans [`Rakefile`](./Rakefile)
+* Les versions de [`asciidoctor`](https://asciidoctor.org/) sont configurables dans [`Gemfile`](./Gemfile) (cf. [rubygems.org](https://rubygems.org/?locale=fr))
+    ```bash
+    bundle update --bundler
+    bundle update
+    ```

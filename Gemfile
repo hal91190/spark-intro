@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'asciidoctor', '1.5.6'
-gem 'asciidoctor-diagram', '~> 1.5.5'
-gem 'asciidoctor-revealjs', '~> 1.0.2'
-
+gem 'asciidoctor', '2.0.11'
+gem 'asciidoctor-diagram', '~> 2.0.5'
+gem 'asciidoctor-revealjs', '~> 4.0.1'

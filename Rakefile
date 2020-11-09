@@ -4,7 +4,7 @@ require 'rake/clean'
 
 chapters = %w[intro rdd sql] # %w définit un tableau de chaînes
 
-REVEALJS_VERION = "3.5.0"
+REVEALJS_VERION = "4.1.0"
 
 # Array : https://ruby-doc.org/core-trunk/Array.html
 # Rake::FileList : http://ruby-doc.org/stdlib-trunk/libdoc/rake/rdoc/Rake/FileList.html
@@ -24,10 +24,10 @@ directory "html/reveal.js" => "html" do |t|
         wget -qO- https://github.com/hakimel/reveal.js/archive/#{REVEALJS_VERION}.tar.gz | \
         tar --transform 's/^reveal.js-#{REVEALJS_VERION}/reveal.js/' -xz -C #{tn}/
     HEREDOC
-    sh <<~HEREDOC
-        sed -e 's/  font-size: ..px;/  font-size: 24px;/' \
-        #{tn}/reveal.js/css/theme/black.css > #{tn}/reveal.js/css/theme/blackmy.css
-    HEREDOC
+#    sh <<~HEREDOC
+#        sed -e 's/  font-size: ..px;/  font-size: 24px;/' \
+#        #{tn}/reveal.js/css/theme/black.css > #{tn}/reveal.js/css/theme/blackmy.css
+#    HEREDOC
 end
 
 desc "Initialise le répertoire des images"
@@ -56,4 +56,3 @@ task :generate_slides => %w[html/slides.html]
 file "html/slides.html" => [:init_html, "index.adoc"] + chapter_files do
     sh "asciidoctor-revealjs -r asciidoctor-diagram -D html/ -o slides.html index.adoc"
 end
-
