@@ -28,36 +28,44 @@
                ^                     ^
                |                     |
                v                     v
-         +-----+-----+        +------+------+
-         |Stockage   |        |Ressources   |
-         |           |        |             |
-         | o local   |        | o autonome  |
-         | o HDFS    |        | o YARN      |
-         | o S3      |        | o Mesos     |
-         | o Ceph    |        |             |
-         |        {s}|        |             |
-         +-----------+        +-------------+
+         +-----+-----+        +------+-------+
+         |Stockage   |        |Déploiement   |
+         |           |        |              |
+         | o local   |        | o autonome   |
+         | o HDFS    |        | o YARN       |
+         | o S3      |        | o Mesos      |
+         | o Ceph    |        | o Kubernetes |
+         | o SGBD    |        |              |
+         |        {s}|        |              |
+         +-----------+        +--------------+
 ....
 
-== APIs de Spark
-* Scala
-** c'est le langage d'implémentation de Spark
-** https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package[ScalaDoc]
-* Java
-** https://spark.apache.org/docs/latest/api/java/index.html[JavaDoc]
-* Python
-** https://spark.apache.org/docs/latest/api/python/index.html[Python API Docs]
-* R
-** https://spark.apache.org/docs/latest/api/R/index.html[R Frontend for Apache Spark]
+* https://spark.apache.org/docs/latest/rdd-programming-guide.html[Spark Core (RDD)]
+* APIs
+** https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package[Scala]
+** https://spark.apache.org/docs/latest/api/java/index.html[Java]
+** https://spark.apache.org/docs/latest/api/python/index.html[Python]
+** https://spark.apache.org/docs/latest/api/R/index.html[R]
+* Bibliothèques intégrées
+** https://spark.apache.org/sql/[SparkSQL]
+** https://spark.apache.org/streaming/[Streaming] / https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html[Structured Streaming]
+** https://spark.apache.org/graphx/[GraphX]
+** https://spark.apache.org/mllib/[MLlib]
+* https://spark.apache.org/docs/latest/cluster-overview.html[Déploiement]
+* https://spark.apache.org/docs/latest/sql-data-sources.html[Sources de données]
 
 == Wordcount en Spark/Scala
 [source,scala]
 ----
-val data = sc.textFile("/path/to/somefile") // Charge le fichier dans un RDD
-val tokens = data.flatMap(_.split(" ")) // Transforme les lignes en succession de mots
-val wordFreq = tokens.map((_, 1)).reduceByKey(_ + _) // Ajoute un compteur pour chaque mot puis fait la somme
-wordFreq.sortBy(s => -s._2).map(x => (x._2, x._1)).top(10) // Trie par compteur décroissant, inverse mot et compteur puis prend les 10 premiers
+val data = sc.textFile("/path/to/somefile") // <1>
+val tokens = data.flatMap(_.split(" ")) // <2>
+val wordFreq = tokens.map((_, 1)).reduceByKey(_ + _) // <3>
+wordFreq.sortBy(s => -s._2).map(x => (x._2, x._1)).top(10) // <4>
 ----
+<1> Charge le fichier dans un RDD
+<2> Transforme les lignes en succession de mots
+<3> Ajoute un compteur pour chaque mot puis fait la somme
+<4> Trie par compteur décroissant, inverse mot et compteur puis prend les 10 premiers
 
 == Wordcount en Spark/Python
 [source,python]
@@ -69,12 +77,6 @@ text_file.flatMap(lambda line: line.split())
     .reduceByKey(lambda a, b: a+b)
 ----
 
-== Bibliothèques intégrées
-* https://spark.apache.org/sql/[SparkSQL]
-* https://spark.apache.org/streaming/[Streaming]
-* https://spark.apache.org/graphx/[GraphX]
-* https://spark.apache.org/mllib/[MLlib]
-
 == Bibliothèques et applications externes
 * https://spark-packages.org/[SparkPackages]
 * https://spark.apache.org/third-party-projects.html[Third-Party Projects]
@@ -84,7 +86,7 @@ text_file.flatMap(lambda line: line.split())
 
 == Exécuter une application
 * `spark-shell` (REPL pour Spark/Scala)
-** `pyspark` pour Python, `sparkR` pour R
+** `pyspark` pour Python, `sparkR` pour R, `spark-sql` pour SQL (_Hive metastore service in local mode_)
 * `spark-submit` pour https://spark.apache.org/docs/latest/submitting-applications.html[soumettre une application] à Spark
 [source,bash]
 ----
@@ -106,8 +108,9 @@ spark-submit \
 `spark://<host>:<port>`:: https://spark.apache.org/docs/latest/spark-standalone.html[exécution en cluster autonome]
 `yarn`:: https://spark.apache.org/docs/latest/running-on-yarn.html[exécution avec YARN] (Hadoop)
 `mesos://<host>:<port>`:: https://spark.apache.org/docs/latest/running-on-mesos.html[exécution sur un cluster Mesos]
+`k8s://https://<k8s-apiserver-host>:<k8s-apiserver-port>`::
+https://spark.apache.org/docs/latest/running-on-kubernetes.html[exécution avec Kubernetes]
 
 == Spark en cluster
 image::cluster-overview.png[]
 Source: https://spark.apache.org/docs/latest/running-on-mesos.html[Running Spark on Mesos]
-
