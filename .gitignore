@@ -9,3 +9,5 @@ notebooks/prenoms_sample.txt/
 # jupyter temporary files
 .local
 notebooks/.ipynb_checkpoints/
+
+/PROD/
