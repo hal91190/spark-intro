@@ -100,7 +100,7 @@ spark-submit \
   [application-arguments]
 ----
 * Notebooks https://zeppelin.apache.org/[Zeppelin] ou http://jupyter.org/[Jupyter]
-* https://accounts.cloud.databricks.com/registration.html#signup/community[Databricks Community Edition]
+* https://www.databricks.com/try-databricks[Databricks Community Edition]
 * https://www.docker.com/[Docker] + image
 
 == Controler l'exécution (`--master`)

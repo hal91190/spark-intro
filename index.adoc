@@ -1,6 +1,6 @@
 = Introduction à Spark
 Stéphane Lopes <stephane.lopes@uvsq.fr>
-v2020-2021
+v2023-2024
 :doctype: book
 :toc: left
 :toc-title: Sommaire
