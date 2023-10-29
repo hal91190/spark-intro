@@ -1,25 +1,22 @@
 # Introduction à Spark
 
-## Utilisation du projet
+## Installation de Spark et du projet
 Pour pouvoir exécuter les exemples de ce projet, il faut disposer d'un environnement Spark/Jupyter.
-Plusieurs possibilités existent pour cela.
-
-### Installation locale
-Il faut installer [Spark](https://spark.apache.org/) et [Jupyter](https://jupyter.org/) puis connecter les deux.
-Des tutoriels sont disponibles sur le web (par exemple [How to install PySpark and Jupyter Notebook in 3 Minutes](https://www.sicara.ai/blog/2017-05-02-get-started-pyspark-jupyter-notebook-3-minutes)).
-
-Plutôt que d'utiliser un notebook, il est aussi possible d'exécuter les exemples avec `spark-shell` (Scala) ou avec `pyspark` (Python).
-
-### Lancement d'un notebook Jupyter/Spark avec docker
-Le [projet Jupyter](http://jupyter.org/) propose un ensemble d'[images docker](https://hub.docker.com/u/jupyter/) ([github](https://github.com/jupyter/docker-stacks)).
-En particulier, l'image [all-spark-notebook](https://hub.docker.com/r/jupyter/all-spark-notebook/) intègre Spark et Jupyter.
+Pour cela, vous pouvez utiliser `pyspark` avec un environnement virtuel Python.
+**Vous devez également disposer d'un JRE (ou d'un JDK) sur la machine.**
 
 ```bash
-docker run -it --rm -p 8888:8888 -v `pwd`:/home/jovyan jupyter/all-spark-notebook
+python3 -m venv sparkenv # Création d'un environnement virtuel
+source sparkenv/bin/activate # Activation de l'environnement
+python3 -m pip install -r requirements.txt # Installation des bibliothèques (pyspark, ...)
 ```
 
-### Utilisation d'un service en ligne
-[Databricks](https://databricks.com/fr/spark/about) fournit un environnement gratuit pour des notebooks Spark nommé [Databricks Community](https://community.cloud.databricks.com/login.html).
+## Utilisation du projet
+Avant de lancer `pyspark` ou un notebook, il faut activer l'environnement virtuel créé ci-dessus.
+
+```bash
+source sparkenv/bin/activate # Activation de l'environnement
+```
 
 ## Construction du support de cours
 Les slides sont au format [asciidoctor](http://asciidoctor.org/).

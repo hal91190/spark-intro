@@ -8,10 +8,11 @@ GEM
       asciidoctor-diagram-plantuml (~> 1.2021)
       rexml
     asciidoctor-diagram-ditaamini (1.0.3)
-    asciidoctor-diagram-plantuml (1.2023.10)
+    asciidoctor-diagram-plantuml (1.2023.12)
     asciidoctor-revealjs (5.0.1)
       asciidoctor (>= 2.0.0, < 3.0.0)
-    rake (13.0.6)
+    pygments.rb (2.4.0)
+    rake (13.1.0)
     rexml (3.2.6)
 
 PLATFORMS
@@ -21,7 +22,8 @@ DEPENDENCIES
   asciidoctor (>= 2)
   asciidoctor-diagram (~> 2.2)
   asciidoctor-revealjs (~> 5)
+  pygments.rb (~> 2.4)
   rake (>= 13)
 
 BUNDLED WITH
-   2.4.19
+   2.4.21

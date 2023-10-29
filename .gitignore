@@ -9,5 +9,6 @@ notebooks/prenoms_sample.txt/
 # jupyter temporary files
 .local
 notebooks/.ipynb_checkpoints/
-
+# Python venv
+/sparkenv/
 /PROD/
