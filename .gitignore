@@ -6,6 +6,10 @@ html/
 notebooks/dpts.txt
 notebooks/prenoms.txt
 notebooks/prenoms_sample.txt/
+notebooks/depts.parquet/
+notebooks/prenomsParDeptsEtAnnees.gzip.parquet/
+notebooks/prenomsParDeptsEtAnnees.parquet/
+notebooks/prenoms/
 # jupyter temporary files
 .local
 notebooks/.ipynb_checkpoints/
